@@ -2,9 +2,9 @@ OBJS = main.cpp texture.cpp game.cpp cards.cpp player.cpp
 
 CC = g++
 
-INCLUDE_PATHS = -ID:/Software/mingw_dev_lib/include/SDL2
+INCLUDE_PATHS = -IE:/Go/mingw_dev_lib/include/SDL2
 
-LIBRARY_PATHS = -LD:/Software/mingw_dev_lib/lib
+LIBRARY_PATHS = -LE:/Go/mingw_dev_lib/lib
 
 COMPILER_FLAGS = -w -W
 
