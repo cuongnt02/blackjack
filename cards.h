@@ -1,5 +1,5 @@
 #ifndef CARDS
-#define CARDS;
+#define CARDS
 #include<SDL.h>
 #include<iostream>
 enum Suit {

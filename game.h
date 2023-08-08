@@ -1,5 +1,6 @@
+#pragma once
 #ifndef GAME_UTILS
-#define GAME_UTILS;
+#define GAME_UTILS 
 #include <iostream>
 #include<SDL.h>
 #include<SDL_image.h>

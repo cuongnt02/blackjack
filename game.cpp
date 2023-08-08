@@ -1,4 +1,5 @@
 #include "game.h"
+#include "SDL_render.h"
 #include "player.h"
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 640;
@@ -102,6 +103,7 @@ void drawPlayerCards(Player player, bool isPlayer)
         if (isPlayer)
             cardTexture.render((SCREEN_WIDTH - cardSprite->w * 5) / 2 + cardSprite->w * i, SCREEN_HEIGHT - cardSprite->h - 30, cardSprite);
         else
+            // No need to rotate because it will be ugly
             cardTexture.render((SCREEN_WIDTH - cardSprite->w * 5) / 2 + cardSprite->w * i, 30, cardSprite);
     }
 }

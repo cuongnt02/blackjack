@@ -1,5 +1,6 @@
 #include<SDL.h>
 #include<SDL_image.h>
+#include "SDL_render.h"
 #include"game.h"
 #include"texture.h"
 
@@ -78,5 +79,5 @@ void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
         renderQuad.h = clip->h;
     }
 
-    SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
+    SDL_RenderCopyEx(gRenderer, mTexture, clip, &renderQuad, angle, center, flip);
 }

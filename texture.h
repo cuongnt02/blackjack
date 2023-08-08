@@ -1,7 +1,7 @@
+#pragma once
 #ifndef SDL_TEXTURE
 #define SDL_TEXTURE
 #include<SDL.h>
-#include"game.h"
 #include<iostream>
 
 
