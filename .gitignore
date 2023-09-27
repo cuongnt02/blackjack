@@ -1,2 +1,3 @@
 .vscode
 ./bj.exe
+./build/*
