@@ -1,10 +1,9 @@
 #include "game.h"
-#include "SDL_render.h"
-#include "SDL_ttf.h"
 
 // Global properties
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 640;
+bool end = false;
 
 // Graphics properties
 SDL_Window* window = NULL;
@@ -17,6 +16,10 @@ TTF_Font* font = NULL;
 Texture card_texture;
 Texture font_texture;
 SDL_Rect card_sprites[4][13];
+
+// Global Objects
+Player player = Player();
+Player opponent = Player();
 
 bool init()
 {
@@ -142,4 +145,24 @@ void draw_background() {
     SDL_SetRenderDrawColor(renderer, 0x61, 0x7A, 0x55, 0xFF);
     SDL_Rect screen_rect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
     SDL_RenderFillRect(renderer, &screen_rect);
+}
+
+int get_result(Player player, Player opponent) {
+    int player_marks = player.get_hand_value();
+    int opponent_marks = opponent.get_hand_value();
+    int result = -2;
+
+    if (player_marks > 21) result = -1;
+    if (opponent_marks > 21) {
+        if (result == -1) result = 0;
+        else result = 1;
+    }
+    if (player_marks <= 21) {
+        if (player_marks > opponent_marks) result = 1;
+        else if (player_marks < opponent_marks) result = -1;
+        else result = 0;
+    }
+
+    return result;
+
 }

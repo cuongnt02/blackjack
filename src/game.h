@@ -16,6 +16,9 @@ extern TTF_Font* font;
 extern Texture card_texture;
 extern Texture font_texture;
 extern SDL_Rect card_sprites[4][13];
+extern Player player;
+extern Player opponent;
+extern bool end;
 
 bool init();
 void close();

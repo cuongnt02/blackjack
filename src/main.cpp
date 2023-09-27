@@ -3,6 +3,7 @@
 #include <random>
 #include <algorithm>
 
+
 int main(int argc, char *args[])
 {
     if (!init())
@@ -27,8 +28,6 @@ int main(int argc, char *args[])
             SDL_Event e;
 
             // Create players
-            Player player;
-            Player opponent;
 
             
 
@@ -42,8 +41,8 @@ int main(int argc, char *args[])
                     "Draw",
                     {0x00, 0x00, 0x00, 0xFF}
             });
-
             button.set_position((SCREEN_WIDTH - BUTTON_WIDTH) / 5, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
+            button.set_event(ButtonEvent::DRAW);
 
             while (!quit)
             {
