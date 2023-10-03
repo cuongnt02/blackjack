@@ -1,4 +1,5 @@
 #include "game.h"
+#include "button.h"
 
 // Global properties
 const int SCREEN_WIDTH = 800;
@@ -157,7 +158,7 @@ int get_result(Player player, Player opponent) {
         if (result == -1) result = 0;
         else result = 1;
     }
-    if (player_marks <= 21) {
+    if (player_marks <= 21 && opponent_marks <= 21) {
         if (player_marks > opponent_marks) result = 1;
         else if (player_marks < opponent_marks) result = -1;
         else result = 0;
@@ -165,4 +166,14 @@ int get_result(Player player, Player opponent) {
 
     return result;
 
+}
+
+void draw_result(int result_code) {
+    std::string result_text;
+    if (result_code == 1) result_text = "You win";
+    else if (result_code == -1) result_text = "You lose";
+    else if (result_code == 0) result_text = "Tie";
+
+    font_texture.load_from_redered_text(result_text, {0x00, 0x00, 0x00, 0xFF});
+    font_texture.render(SCREEN_WIDTH / 2 - BUTTON_WIDTH, (SCREEN_HEIGHT - BUTTON_HEIGHT) / 2);
 }

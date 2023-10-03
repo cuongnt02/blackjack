@@ -1,3 +1,4 @@
+#include "SDL_mutex.h"
 #include "button.h"
 #include "game.h"
 #include <random>
@@ -32,8 +33,8 @@ int main(int argc, char *args[])
             
 
             // Card rendering demo - remove later
-            player.draw_first_hand();
-            opponent.draw_first_hand();
+            if (player.draw_first_hand() || opponent.draw_first_hand())
+                end = true;
 
 
             Button button = Button();
@@ -43,6 +44,25 @@ int main(int argc, char *args[])
             });
             button.set_position((SCREEN_WIDTH - BUTTON_WIDTH) / 5, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
             button.set_event(ButtonEvent::DRAW);
+            button.set_visible(true);
+
+            Button stand_button = Button();
+            stand_button.set_text({
+                    "Stand",
+                    {0x00, 0x00, 0x00, 0xFF}
+                    });
+            stand_button.set_position(SCREEN_WIDTH * 4 / 5 - BUTTON_WIDTH, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
+            stand_button.set_event(ButtonEvent::STAND);
+            stand_button.set_visible(true);
+
+            Button again_button = Button();
+            again_button.set_text({
+                    "Play",
+                    {0x00, 0x00, 0x00, 0xFF}
+                    });
+            again_button.set_position(SCREEN_WIDTH * 4 / 5 - BUTTON_WIDTH / 2, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
+            again_button.set_visible(false);
+
 
             while (!quit)
             {
@@ -55,11 +75,10 @@ int main(int argc, char *args[])
                     }
                 
                     button.handle_event(&e);
+                    stand_button.handle_event(&e);
+                    again_button.handle_event(&e);
                     
                 }
-
-                // Game Logic
-
 
 
                 // Clear screen
@@ -75,9 +94,25 @@ int main(int argc, char *args[])
 
                 // Draw buttons
                 button.render();
+                stand_button.render();
+                again_button.render();
 
                 // Render on screen
+
+
+
+                // Update
+                if (end) {
+                    opponent.draw_card_auto();
+                    int result = get_result(player, opponent);
+                    draw_result(result);
+                    button.set_visible(false);
+                    stand_button.set_visible(false);
+                    again_button.set_visible(true);
+                }
+
                 SDL_RenderPresent(renderer);
+
             }
             close();
         }

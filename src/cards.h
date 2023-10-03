@@ -35,7 +35,7 @@ class Card {
         std::string get_suit();
         std::string get_number();
         std::string get_name();
-        int get_value(int hand_size = 2);
+        int get_value(int hand_size = 2, int hand_value = 0);
         SDL_Rect* get_sprite();
     private:
         Suit m_suit;

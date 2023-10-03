@@ -81,7 +81,12 @@ void Button::handle_event(SDL_Event* e) {
                     switch (m_event) {
                         case DRAW:
                             player.draw_card();
+                            if (player.get_hand_value() > 21) {
+                                end = true;
+                            }
                             break;
+                        case STAND:
+                            end = true;
                         default:
                             break;
 
@@ -95,17 +100,23 @@ void Button::handle_event(SDL_Event* e) {
 }
 
 void Button::render() {
-    SDL_SetRenderDrawColor(renderer,
-            m_container.color.r,
-            m_container.color.g,
-            m_container.color.b,
-            m_container.color.a);
-    SDL_RenderFillRect(renderer, &m_container.rect);
-    font_texture.load_from_redered_text(m_text.text, m_text.color);
-    font_texture.render(m_position.x + (BUTTON_WIDTH - font_texture.get_width()) / 2
-            , m_position.y + (BUTTON_HEIGHT - font_texture.get_height()) / 2);
+    if (m_visible) {
+        SDL_SetRenderDrawColor(renderer,
+                m_container.color.r,
+                m_container.color.g,
+                m_container.color.b,
+                m_container.color.a);
+        SDL_RenderFillRect(renderer, &m_container.rect);
+        font_texture.load_from_redered_text(m_text.text, m_text.color);
+        font_texture.render(m_position.x + (BUTTON_WIDTH - font_texture.get_width()) / 2
+                , m_position.y + (BUTTON_HEIGHT - font_texture.get_height()) / 2);
+    }
 }
 
 void Button::set_event(ButtonEvent evt) {
     m_event = evt;
+}
+
+void Button::set_visible(bool visible) {
+    m_visible = visible;
 }

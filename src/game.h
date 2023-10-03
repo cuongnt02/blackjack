@@ -7,6 +7,7 @@
 #include "texture.h"
 #include "cards.h"
 #include "player.h"
+#include "button.h"
 
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
@@ -25,12 +26,10 @@ void close();
 bool load_media();
 void draw_cards(Player player, bool is_player);
 void draw_background();
+int get_result(Player player, Player opponent);
+void draw_result(int result_code);
 
-struct TextSprite {
-    std::string text;
-    SDL_Color color;
-};
 
-#include "button.h"
+
 
 #endif

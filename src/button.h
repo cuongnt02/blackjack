@@ -2,7 +2,7 @@
 #ifndef BUTTON
 
 #include "SDL.h"
-#include "game.h"
+#include "text.h"
 
 const int BUTTON_WIDTH = 200;
 const int BUTTON_HEIGHT = 100;
@@ -12,6 +12,7 @@ enum ButtonEvent {
     STAND,
     RESET
 };
+
 
 struct ButtonRect {
     SDL_Rect rect;
@@ -27,6 +28,7 @@ class Button {
         void set_color(SDL_Color color);
         void set_text(TextSprite text);
         void set_event(ButtonEvent event);
+        void set_visible(bool visible);
         void handle_event(SDL_Event* e);
         void render();
 
@@ -35,6 +37,8 @@ class Button {
         ButtonRect m_container;
         TextSprite m_text;
         ButtonEvent m_event;
+        bool m_visible;
 };
+
 
 #endif

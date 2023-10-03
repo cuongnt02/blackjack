@@ -103,7 +103,7 @@ std::string Card::get_suit()
     return suit;
 }
 
-int Card::get_value(int hand_size)
+int Card::get_value(int hand_size, int hand_value)
 {
     int value = 0;
     switch (m_number)
@@ -127,21 +127,20 @@ int Card::get_value(int hand_size)
         break;
     case ACE:
     {
-        if (hand_size > 1)
-        {
-            value = 11;
-        }
-        else if (hand_size > 2)
-        {
-            value = 10;
-        }
-        else if (hand_size > 3)
-        {
-            value = 1;
-        }
-        else 
-        {
-            value = 0;
+        switch (hand_size) {
+            case 2:
+                value = 11;
+                break;
+            case 3:
+                value = 10; 
+                if (hand_value < 21)
+                    break;
+            case 4:
+            case 5:
+                value = 1;
+                break;
+            default:
+                break;
         }
     }
     default:
