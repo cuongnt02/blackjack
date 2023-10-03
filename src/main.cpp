@@ -44,7 +44,6 @@ int main(int argc, char *args[])
             });
             button.set_position((SCREEN_WIDTH - BUTTON_WIDTH) / 5, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
             button.set_event(ButtonEvent::DRAW);
-            button.set_visible(true);
 
             Button stand_button = Button();
             stand_button.set_text({
@@ -53,7 +52,6 @@ int main(int argc, char *args[])
                     });
             stand_button.set_position(SCREEN_WIDTH * 4 / 5 - BUTTON_WIDTH, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
             stand_button.set_event(ButtonEvent::STAND);
-            stand_button.set_visible(true);
 
             Button again_button = Button();
             again_button.set_text({
@@ -61,7 +59,7 @@ int main(int argc, char *args[])
                     {0x00, 0x00, 0x00, 0xFF}
                     });
             again_button.set_position(SCREEN_WIDTH * 4 / 5 - BUTTON_WIDTH / 2, SCREEN_HEIGHT / 2 - BUTTON_HEIGHT / 2);
-            again_button.set_visible(false);
+            again_button.set_event(ButtonEvent::RESET);
 
 
             while (!quit)
@@ -109,6 +107,10 @@ int main(int argc, char *args[])
                     button.set_visible(false);
                     stand_button.set_visible(false);
                     again_button.set_visible(true);
+                } else {
+                    button.set_visible(true);
+                    stand_button.set_visible(true);
+                    again_button.set_visible(false);
                 }
 
                 SDL_RenderPresent(renderer);

@@ -87,6 +87,10 @@ void Button::handle_event(SDL_Event* e) {
                             break;
                         case STAND:
                             end = true;
+                            break;
+                        case RESET:
+                            game_reset();
+                            break;
                         default:
                             break;
 

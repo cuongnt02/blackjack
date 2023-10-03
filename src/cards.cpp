@@ -133,7 +133,7 @@ int Card::get_value(int hand_size, int hand_value)
                 break;
             case 3:
                 value = 10; 
-                if (hand_value < 21)
+                if (hand_value <= 21)
                     break;
             case 4:
             case 5:

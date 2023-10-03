@@ -177,3 +177,12 @@ void draw_result(int result_code) {
     font_texture.load_from_redered_text(result_text, {0x00, 0x00, 0x00, 0xFF});
     font_texture.render(SCREEN_WIDTH / 2 - BUTTON_WIDTH, (SCREEN_HEIGHT - BUTTON_HEIGHT) / 2);
 }
+
+
+void game_reset() {
+    player = Player();
+    opponent = Player();
+    end = false;
+    if (player.draw_first_hand() || opponent.draw_first_hand())
+        end = true;
+}

@@ -28,6 +28,7 @@ void draw_cards(Player player, bool is_player);
 void draw_background();
 int get_result(Player player, Player opponent);
 void draw_result(int result_code);
+void game_reset();
 
 
 
