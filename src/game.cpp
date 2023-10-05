@@ -21,6 +21,7 @@ SDL_Rect card_sprites[4][13];
 // Global Objects
 Player player = Player();
 Player opponent = Player();
+Deck deck = Deck();
 
 bool init()
 {
@@ -186,3 +187,13 @@ void game_reset() {
     if (player.draw_first_hand() || opponent.draw_first_hand())
         end = true;
 }
+
+void fill_deck() {
+    for (int suit = 0; suit < 4; suit++) {
+        for (int number = 0; number < 13; number++) {
+            Card card = Card(static_cast<Suit>(suit), static_cast<Number>(number));
+            deck.push(&card);
+        }
+    }
+}
+
