@@ -3,14 +3,15 @@
 #include<SDL.h>
 #include"cards.h"
 #include<algorithm>
+#include"deck.h"
 
 class Player {
     public:
         Player();
         ~Player();
-        bool draw_first_hand();
-        void draw_card();
-        void draw_card_auto();
+        bool draw_first_hand(Deck* deck);
+        void draw_card(Deck* deck);
+        void draw_card_auto(Deck* deck);
         int get_hand_value();
         Card* get_hand();
         int get_hand_size();

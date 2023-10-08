@@ -28,12 +28,14 @@ int main(int argc, char *args[])
             // Event to handle
             SDL_Event e;
 
-            // Create players
 
+            // Deck initialize
             
-
+            fill_deck(&deck);
+            shuffle_deck(&deck);
+            
             // Card rendering demo - remove later
-            if (player.draw_first_hand() || opponent.draw_first_hand())
+            if (player.draw_first_hand(&deck) || opponent.draw_first_hand(&deck))
                 end = true;
 
 
@@ -101,7 +103,7 @@ int main(int argc, char *args[])
 
                 // Update
                 if (end) {
-                    opponent.draw_card_auto();
+                    opponent.draw_card_auto(&deck);
                     int result = get_result(player, opponent);
                     draw_result(result);
                     button.set_visible(false);

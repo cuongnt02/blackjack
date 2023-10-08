@@ -184,16 +184,23 @@ void game_reset() {
     player = Player();
     opponent = Player();
     end = false;
-    if (player.draw_first_hand() || opponent.draw_first_hand())
+    if (player.draw_first_hand(&deck) || opponent.draw_first_hand(&deck))
         end = true;
 }
 
-void fill_deck() {
+void fill_deck(Deck* deck) {
     for (int suit = 0; suit < 4; suit++) {
         for (int number = 0; number < 13; number++) {
             Card card = Card(static_cast<Suit>(suit), static_cast<Number>(number));
-            deck.push(&card);
+            deck->push(card);
         }
     }
 }
 
+void clear_deck(Deck* deck) {
+    deck->reset();        
+}
+
+void shuffle_deck(Deck* deck) {
+    deck->shuffle();
+}

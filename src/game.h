@@ -8,7 +8,6 @@
 #include "cards.h"
 #include "player.h"
 #include "button.h"
-#include "deck.h"
 
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
@@ -31,11 +30,9 @@ void draw_background();
 int get_result(Player player, Player opponent);
 void draw_result(int result_code);
 void game_reset();
-void fill_deck();
-void clear_deck();
-void reset_deck();
-
-
-
+void fill_deck(Deck* deck);
+void reset_deck(Deck* deck);
+void shuffle_deck(Deck* deck);
 
 #endif
+

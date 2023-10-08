@@ -1,4 +1,5 @@
 #include"player.h"
+#include "game.h"
 
 
 Player::Player()
@@ -13,26 +14,30 @@ Player::~Player()
     m_hand_size = 0;
 }
 
-void Player::draw_card()
+void Player::draw_card(Deck* deck)
 {
-    int suit = rand() % 4;
-    int number = rand() % 13;
+    Card card = deck->pop();
+    if (deck->get_top() < 10) {
+        deck->reset();
+        fill_deck(deck);
+        shuffle_deck(deck);
+    }
     if (m_hand_size < 5)
     {
-        m_hand[m_hand_size++] = Card(static_cast<Suit>(suit), static_cast<Number>(number));
+        m_hand[m_hand_size++] = card;
     }    
 }
 
-void Player::draw_card_auto() {
+void Player::draw_card_auto(Deck * deck) {
     while (m_hand_size < 5 && get_hand_value() < 16) {
-        draw_card();
+        draw_card(deck);
     }
 }
 
-bool Player::draw_first_hand()
+bool Player::draw_first_hand(Deck* deck)
 {
-    draw_card();
-    draw_card();
+    draw_card(deck);
+    draw_card(deck);
     if (get_hand_value() == 21) return true;
     return false;
 }

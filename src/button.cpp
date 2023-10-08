@@ -80,7 +80,7 @@ void Button::handle_event(SDL_Event* e) {
                     
                     switch (m_event) {
                         case DRAW:
-                            player.draw_card();
+                            player.draw_card(&deck);
                             if (player.get_hand_value() > 21) {
                                 end = true;
                             }
